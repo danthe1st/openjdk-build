@@ -18,7 +18,7 @@ jobs:
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: true
       - name: install build tools
-        run: sudo apt install build-essential libx11-dev libxext-dev libxrender-dev libxrandr-dev libxtst-dev libxt-dev libcups2-dev autoconf libfreetype6-dev libasound2-dev libffi-dev
+        run: sudo apt install build-essential libx11-dev libxext-dev libxrender-dev libxrandr-dev libxtst-dev libxt-dev libcups2-dev autoconf libfreetype6-dev libasound2-dev libffi-dev jtreg
       - name: configure
         run: bash configure
       - name: Run make
