@@ -29,5 +29,5 @@ jobs:
         run: make run-test-tier1
       - uses: actions/upload-artifact@v2
         with:
-        name: jdk
-        path: ./build/*/images/jdk
+          name: jdk
+          path: ./build/*/images/jdk
