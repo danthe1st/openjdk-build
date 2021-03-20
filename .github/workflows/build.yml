@@ -1,0 +1,27 @@
+name: build
+on:
+  push:
+    branches: [ master ]
+  schedule:
+    - cron: "5 0 * * *"
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          repository: 'openjdk/jdk'
+      - uses: actions/setup-java@v1.4.2
+        with:
+          java-version: 14 
+      - name: install build tools
+        run: sudo apt install build-essential libx11-dev libxext-dev libxrender-dev libxrandr-dev libxtst-dev libxt-dev libcups2-dev autoconf libfreetype6-dev libasound2-dev libffi-dev
+      - name: configure
+        run: bash configure
+      - name: Run make
+        run: make images
+      - name: verify JDK
+        run: ./build/*/images/jdk/bin/java -version
+      - name: run tests
+        run: make run-test-tier1
