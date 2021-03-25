@@ -26,7 +26,7 @@ jobs:
       - name: verify JDK
         run: ./build/*/images/jdk/bin/java -version
       - name: run tests
-        run: make run-test-tier1
+        run: make run-test-tier1 --with-jtreg=/usr/share/jtreg/
       - uses: actions/upload-artifact@v2
         with:
           name: jdk
