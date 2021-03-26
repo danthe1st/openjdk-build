@@ -20,13 +20,13 @@ jobs:
       - name: install build tools
         run: sudo apt install build-essential libx11-dev libxext-dev libxrender-dev libxrandr-dev libxtst-dev libxt-dev libcups2-dev autoconf libfreetype6-dev libasound2-dev libffi-dev jtreg
       - name: configure
-        run: bash configure
+        run: bash configure --with-jtreg=/usr/share/jtreg/
       - name: Run make
         run: make images
       - name: verify JDK
         run: ./build/*/images/jdk/bin/java -version
       - name: run tests
-        run: make run-test-tier1 --with-jtreg=/usr/share/jtreg/
+        run: make run-test-tier1
       - uses: actions/upload-artifact@v2
         with:
           name: jdk
