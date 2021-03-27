@@ -23,8 +23,13 @@ jobs:
         run: |
           curl https://ci.adoptopenjdk.net/view/Dependencies/job/jtreg/lastSuccessfulBuild/artifact/jtreg-5.1-b01.tar.gz -o jtreg.tar.gz
           tar xf jtreg.tar.gz
+      - name: Setup gtest
+        uses: actions/checkout@v2
+        with:
+          repository: "google/googletest"
+          path: gtest
       - name: configure
-        run: bash configure --with-jtreg="$PWD/jtreg"
+        run: bash configure --with-jtreg="$PWD/jtreg" --with-gtest="${GITHUB_WORKSPACE}/gtest"
       - name: Run make
         run: make images
       - name: verify JDK
